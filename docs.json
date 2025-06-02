@@ -63,7 +63,9 @@
               "api-reference/create-pull-request",
               "api-reference/kill-sandbox",
               "api-reference/pause-sandbox",
-              "api-reference/resume-sandbox"
+              "api-reference/resume-sandbox",
+              "api-reference/get-session",
+              "api-reference/set-session"
             ]
           }
         ]
