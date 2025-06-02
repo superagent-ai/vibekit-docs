@@ -17,19 +17,23 @@
             "group": "Get Started",
             "pages": [
               "index",
-              "quickstart",
-              "development"
+              "quickstart"
             ]
           },
           {
-            "group": "Essentials",
+            "group": "Agents",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
+              "agents/codex",
+              "agents/claude-Code"
+            ]
+          },
+          {
+            "group": "Supported Sandboxes",
+            "pages": [
+              "supported-sandboxes/E2B",
+              "supported-sandboxes/daytona",
+              "supported-sandboxes/fly.io",
+              "supported-sandboxes/modal"
             ]
           }
         ]
@@ -58,18 +62,18 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
+          "anchor": "GitHub",
+          "href": "https://github.com/superagent-ai/vibekit",
+          "icon": "github"
         },
         {
           "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
+          "href": "https://discord.gg/8HQET52d",
+          "icon": "discord"
         },
         {
           "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
+          "href": "https://www.superagent.sh/blog",
           "icon": "newspaper"
         }
       ]
@@ -94,9 +98,9 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/superagent_ai",
+      "github": "https://github.com/superagent-ai/vibekit",
+      "linkedin": "https://www.linkedin.com/company/superagent-sh"
     }
   }
 }
