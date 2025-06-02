@@ -1,11 +1,25 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "VibeKit",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#000000",
+    "light": "#FFFFFF",
+    "dark": "#000000"
+  },
+  "styling": {
+    "eyebrows": "breadcrumbs",
+    "codeblocks": "dark"
+  },
+  "background": {
+    "color": {
+      "light": "#FFFFFF",
+      "dark": "#000000"
+    }
+  },
+  "appearance": {
+    "default": "light",
+    "strict": false
   },
   "favicon": "/favicon.svg",
   "navigation": {
@@ -24,15 +38,15 @@
             "group": "Agents",
             "pages": [
               "agents/codex",
-              "agents/claude-Code"
+              "agents/claude-code"
             ]
           },
           {
             "group": "Supported Sandboxes",
             "pages": [
-              "supported-sandboxes/E2B",
+              "supported-sandboxes/e2b",
               "supported-sandboxes/daytona",
-              "supported-sandboxes/fly.io",
+              "supported-sandboxes/flyio",
               "supported-sandboxes/modal"
             ]
           }
@@ -42,18 +56,14 @@
         "tab": "API Reference",
         "groups": [
           {
-            "group": "API Documentation",
+            "group": "VibeKit",
             "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint Examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "api-reference/configuration",
+              "api-reference/generate-code",
+              "api-reference/create-pull-request",
+              "api-reference/kill-sandbox",
+              "api-reference/pause-sandbox",
+              "api-reference/resume-sandbox"
             ]
           }
         ]
@@ -80,20 +90,20 @@
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/vibekit.png",
+    "dark": "/logo/vibekit.png"
   },
   "navbar": {
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:ismail@superagent.sh"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "GitHub",
+      "href": "https://github.com/superagent-ai/vibekit"
     }
   },
   "footer": {

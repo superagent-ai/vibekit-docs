@@ -1,0 +1,31 @@
+---
+title: 'E2B'
+description: 'Configure VibeKit with a E2B sandbox'
+---
+
+E2B is an open-source runtime for executing AI-generated code in secure cloud sandboxes. Made for agentic & AI use cases. You can read more about it [here](https://e2b.dev).
+
+## How to use
+
+To use E2B with VibeKit, you need to configure E2B when creating a new VibeKit instance. You can get your API key from the E2B dashboard.
+
+```typescript
+import { VibeKit, VibeConfig } from "@vibe-kit/sdk";
+
+const config: VibeConfig = {
+  ...,
+  environment: {
+    e2b: {
+      // Required E2B API key
+      apiKey: "e2b_****",
+      // Optional custom E2B template you want to use 
+      // that has the codex CLI and Git installed.
+      templateId: "super-codex" 
+    },
+  },
+};
+```
+
+## ENV variables and Secrets
+
+Coming soon...

@@ -1,0 +1,174 @@
+---
+title: 'Configuration'
+description: 'VibeKit configuration reference'
+---
+
+## Overview
+
+VibeKit requires a configuration object to initialize the client. The configuration defines which AI agent to use, sandbox environment settings, GitHub integration, telemetry options, and session management.
+
+## Basic Configuration
+
+```typescript
+import { VibeKit, VibeKitConfig } from "@vibe-kit/sdk";
+
+const config: VibeKitConfig = {
+  agent: {
+    type: "codex",
+    model: {
+      apiKey: "sk-proj-****"
+      model: "codex-mini"
+    },
+    mode: "code"
+  },
+  environment: {
+    e2b: {
+      apiKey: "e2b_****"
+    }
+  },
+  github: {
+    token: "ghp_****",
+    repository: "your-org/your-repo"
+  },
+  sessionId: "unique-session-identifier"
+};
+
+const vibeKit = new VibeKit(config);
+```
+
+## Configuration Reference
+
+### Agent Configuration
+
+The `agent` section defines which AI model and mode to use.
+
+#### `agent.type`
+- **Type**: `"codex" | "claude"`
+- **Required**: Yes
+- **Description**: The type of AI agent to use
+- **Options**:
+  - `"codex"` - OpenAI Codex model
+  - `"claude"` - Anthropic Claude model
+
+#### `agent.model`
+- **Type**: `AgentModel`
+- **Required**: Yes
+- **Description**: Model configuration and API credentials
+
+**Properties:**
+- `name` (optional): Custom name for the model
+- `apiKey` (required): API key for the chosen agent provider
+
+```typescript
+agent: {
+  type: "codex",
+  model: {
+    name: "gpt-4",
+    apiKey: "sk-proj-****"
+  },
+  mode: "code"
+}
+```
+
+#### `agent.mode`
+- **Type**: `"ask" | "code"`
+- **Required**: Yes
+- **Description**: Operating mode for the agent
+- **Options**:
+  - `"ask"` - Question and answer mode without file system changes
+  - `"code"` - Code generation mode with file system modifications
+
+### Environment Configuration
+
+The `environment` section configures the sandbox environment where code execution happens.
+
+#### E2B Configuration
+
+```typescript
+environment: {
+  e2b: {
+    apiKey: "e2b_****",
+    templateId: "custom-template-id" // optional
+  }
+}
+```
+
+**Properties:**
+- `apiKey` (required): Your E2B API key
+- `templateId` (optional): Custom template ID for the sandbox environment
+
+#### Daytona Configuration
+
+```typescript
+environment: {
+  daytona: {
+    apiKey: "daytona_****",
+    image: "ubuntu:22.04", // optional
+    serverUrl: "https://your-daytona-server.com" // optional
+  }
+}
+```
+
+**Properties:**
+- `apiKey` (required): Your Daytona API key
+- `image` (optional): Docker image to use for the environment
+- `serverUrl` (optional): Custom Daytona server URL
+
+### GitHub Integration
+
+The `github` section configures repository integration for pull request creation and code management.
+
+```typescript
+github: {
+  token: "ghp_****",
+  repository: "superagent-ai/vibekit"
+}
+```
+
+**Properties:**
+- `token` (required): GitHub personal access token with repository permissions
+- `repository` (required): Repository in the format "owner/repo-name"
+
+### Telemetry Configuration (Optional)
+
+The `telemetry` section enables OpenTelemetry observability for monitoring and debugging.
+
+```typescript
+telemetry: {
+  isEnabled: true,
+  endpoint: "https://api.honeycomb.io/v1/traces",
+  serviceName: "my-vibekit-app",
+  serviceVersion: "1.0.0",
+  headers: {
+    "x-honeycomb-team": "your-api-key"
+  },
+  timeout: 5000,
+  samplingRatio: 0.1,
+  resourceAttributes: {
+    environment: "production",
+    region: "us-east-1"
+  }
+}
+```
+
+**Properties:**
+- `isEnabled` (required): Enable or disable telemetry collection
+- `endpoint` (optional): OTLP HTTP endpoint URL for traces
+- `serviceName` (optional): Service name for resource attributes (defaults to "vibekit")
+- `serviceVersion` (optional): Service version for resource attributes (defaults to "1.0.0")
+- `headers` (optional): Additional headers for OTLP HTTP requests
+- `timeout` (optional): Request timeout in milliseconds (defaults to 5000)
+- `samplingRatio` (optional): Sampling ratio from 0.0 to 1.0 (defaults to 1.0 for 100% sampling)
+- `resourceAttributes` (optional): Additional resource attributes to include in telemetry data
+
+### Session Management (Optional)
+
+```typescript
+sessionId: "unique-session-identifier"
+```
+
+**Properties:**
+- `sessionId` (optional): Unique identifier for grouping related requests and maintaining conversation context
+
+
+

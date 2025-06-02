@@ -1,0 +1,87 @@
+---
+title: "createPullRequest"
+description: "Create a pull request after generating code changes."
+---
+
+## Method Signature
+
+```typescript
+async createPullRequest(): Promise<PullRequestResponse>
+```
+
+## Description
+
+The `createPullRequest` method allows you to create a GitHub pull request after code changes have been generated using the Codex agent. This method streamlines the process of submitting code changes for review by automatically creating a pull request with the generated modifications.
+
+## Parameters
+
+This method takes no parameters.
+
+## Return Type
+
+Returns a `Promise<PullRequestResponse>` containing:
+
+```typescript
+interface PullRequestResponse {
+  html_url: string;      // The URL to view the pull request on GitHub
+  number: number;        // The pull request number
+  branchName: string;    // The name of the branch created for the PR
+  commitSha?: string;    // The SHA of the commit (optional)
+}
+```
+
+## Requirements
+
+- **Agent Type**: This method is only available when using the Codex agent
+- **Initialization**: The VibeKit instance must be properly initialized with Codex configuration
+- **Code Generation**: Code changes should be generated before creating a pull request
+
+## Error Handling
+
+The method throws errors in the following scenarios:
+
+### Agent Type Error
+```typescript
+throw new Error("Pull request creation is only supported for the Codex agent")
+```
+- **When**: Called with an agent type other than "codex"
+- **Resolution**: Ensure your VibeKit instance is configured with `agent.type: "codex"`
+
+### Initialization Error
+```typescript
+throw new Error("CodexAgent not initialized")
+```
+- **When**: The CodexAgent is not properly initialized
+- **Resolution**: Verify your VibeKit configuration includes valid Codex settings
+
+## Usage Examples
+
+### Basic Usage
+
+```typescript
+import { VibeKit } from 'vibekit';
+
+const vibekit = new VibeKit(config);
+
+// Generate code first
+await vibekit.generateCode("Add a new user registration feature");
+
+// Create pull request
+try {
+  const prResponse = await vibekit.createPullRequest();
+  
+  console.log(`Pull request created: ${prResponse.html_url}`);
+  console.log(`PR Number: ${prResponse.number}`);
+  console.log(`Branch: ${prResponse.branchName}`);
+  console.log(`Commit SHA: ${prResponse.commitSha}`);
+} catch (error) {
+  console.error("Failed to create pull request:", error.message);
+}
+```
+
+## Notes
+
+- The pull request is automatically labeled with 'codex' or 'claude' to indicate it was created by the Codex or Claude agent
+- Ensure your GitHub token has the necessary permissions to create pull requests in the target repository
+- The method creates a new branch for the pull request automatically
+- Code changes must be generated before calling this method
