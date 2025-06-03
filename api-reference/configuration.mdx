@@ -19,7 +19,6 @@ const config: VibeKitConfig = {
       apiKey: "sk-proj-****"
       model: "codex-mini"
     },
-    mode: "code"
   },
   environment: {
     e2b: {
@@ -55,28 +54,35 @@ The `agent` section defines which AI model and mode to use.
 - **Required**: Yes
 - **Description**: Model configuration and API credentials
 
-**Properties:**
-- `name` (optional): Custom name for the model
-- `apiKey` (required): API key for the chosen agent provider
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `name` | `string` | No | Custom name for the model |
+| `apiKey` | `string` | Yes | API key for the chosen agent provider |
+| `provider` | `string` | No | AI provider service |
+
+**Available providers:**
+- `"openai"` - OpenAI
+- `"anthropic"` - Anthropic
+- `"openrouter"` - OpenRouter
+- `"azure"` - Azure
+- `"gemini"` - Google Gemini
+- `"ollama"` - Ollama
+- `"mistral"` - Mistral AI
+- `"deepseek"` - DeepSeek
+- `"xai"` - xAI
+- `"groq"` - Groq
+- `"arceeai"` - Arcee AI
 
 ```typescript
 agent: {
   type: "codex",
   model: {
-    name: "gpt-4",
+    name: "codex-mini-latest",
     apiKey: "sk-proj-****"
+    provider: "openai"
   },
-  mode: "code"
 }
 ```
-
-#### `agent.mode`
-- **Type**: `"ask" | "code"`
-- **Required**: Yes
-- **Description**: Operating mode for the agent
-- **Options**:
-  - `"ask"` - Question and answer mode without file system changes
-  - `"code"` - Code generation mode with file system modifications
 
 ### Environment Configuration
 
@@ -93,9 +99,10 @@ environment: {
 }
 ```
 
-**Properties:**
-- `apiKey` (required): Your E2B API key
-- `templateId` (optional): Custom template ID for the sandbox environment
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `apiKey` | `string` | Yes | Your E2B API key |
+| `templateId` | `string` | No | Custom template ID for the sandbox environment |
 
 #### Daytona Configuration
 
@@ -109,10 +116,11 @@ environment: {
 }
 ```
 
-**Properties:**
-- `apiKey` (required): Your Daytona API key
-- `image` (optional): Docker image to use for the environment
-- `serverUrl` (optional): Custom Daytona server URL
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `apiKey` | `string` | Yes | Your Daytona API key |
+| `image` | `string` | No | Docker image to use for the environment |
+| `serverUrl` | `string` | No | Custom Daytona server URL |
 
 ### GitHub Integration
 
@@ -125,9 +133,10 @@ github: {
 }
 ```
 
-**Properties:**
-- `token` (required): GitHub personal access token with repository permissions
-- `repository` (required): Repository in the format "owner/repo-name"
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `token` | `string` | Yes | GitHub personal access token with repository permissions |
+| `repository` | `string` | Yes | Repository in the format "owner/repo-name" |
 
 ### Telemetry Configuration (Optional)
 
@@ -151,15 +160,16 @@ telemetry: {
 }
 ```
 
-**Properties:**
-- `isEnabled` (required): Enable or disable telemetry collection
-- `endpoint` (optional): OTLP HTTP endpoint URL for traces
-- `serviceName` (optional): Service name for resource attributes (defaults to "vibekit")
-- `serviceVersion` (optional): Service version for resource attributes (defaults to "1.0.0")
-- `headers` (optional): Additional headers for OTLP HTTP requests
-- `timeout` (optional): Request timeout in milliseconds (defaults to 5000)
-- `samplingRatio` (optional): Sampling ratio from 0.0 to 1.0 (defaults to 1.0 for 100% sampling)
-- `resourceAttributes` (optional): Additional resource attributes to include in telemetry data
+| Property | Type | Required | Default | Description |
+|----------|------|----------|---------|-------------|
+| `isEnabled` | `boolean` | Yes | - | Enable or disable telemetry collection |
+| `endpoint` | `string` | No | - | OTLP HTTP endpoint URL for traces |
+| `serviceName` | `string` | No | `"vibekit"` | Service name for resource attributes |
+| `serviceVersion` | `string` | No | `"1.0.0"` | Service version for resource attributes |
+| `headers` | `object` | No | - | Additional headers for OTLP HTTP requests |
+| `timeout` | `number` | No | `5000` | Request timeout in milliseconds |
+| `samplingRatio` | `number` | No | `1.0` | Sampling ratio from 0.0 to 1.0 (1.0 = 100% sampling) |
+| `resourceAttributes` | `object` | No | - | Additional resource attributes to include in telemetry data |
 
 ### Session Management (Optional)
 
@@ -167,8 +177,9 @@ telemetry: {
 sessionId: "unique-session-identifier"
 ```
 
-**Properties:**
-- `sessionId` (optional): Unique identifier for grouping related requests and maintaining conversation context
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `sessionId` | `string` | No | Unique identifier for grouping related requests and maintaining conversation context |
 
 
 

@@ -16,50 +16,40 @@ async generateCode(
 
 ## Parameters
 
-### `prompt` (required)
-- **Type:** `string`
-- **Description:** The text prompt describing what code to generate or question to ask
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| `prompt` | `string` | Yes | - | The text prompt describing what code to generate or question to ask |
+| `mode` | `"ask" \| "code"` | No | Agent config mode | Interactive Q&A mode (`"ask"`) or code generation mode (`"code"`) |
+| `history` | `Conversation[]` | No | - | Previous conversation history to provide context for the generation |
+| `callbacks` | `VibeKitStreamCallbacks` | No | - | Streaming callbacks for real-time updates |
 
-### `mode` (optional)
-- **Type:** `"ask" | "code"`
-- **Default:** Uses the mode configured in `AgentConfig.agent.mode`
-- **Description:** 
-  - `"ask"`: Interactive Q&A mode for asking questions
-  - `"code"`: Code generation mode for creating/modifying code
+### VibeKitStreamCallbacks Interface
 
-### `history` (optional)
-- **Type:** `Conversation[]`
-- **Description:** Previous conversation history to provide context for the generation
-
-### `callbacks` (optional)
-- **Type:** `VibeKitStreamCallbacks`
-- **Description:** Streaming callbacks for real-time updates
-- **Properties:**
-  - `onUpdate?: (message: string) => void` - Called with streaming updates
-  - `onError?: (error: string) => void` - Called when errors occur
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `onUpdate` | `(message: string) => void` | No | Called with streaming updates |
+| `onError` | `(error: string) => void` | No | Called when errors occur |
 
 ## Return Value
 
-Returns `Promise<AgentResponse>` where `AgentResponse` can be:
+| Type | Description |
+|------|-------------|
+| `Promise<AgentResponse>` | Promise that resolves to either a CodexResponse or ClaudeResponse depending on the configured agent |
 
-### For Codex Agent
-```typescript
-CodexResponse {
-  sandboxId: string;
-  stdout?: string;
-  stderr?: string;
-  exitCode?: number;
-  // Additional codex-specific fields
-}
-```
+### CodexResponse (for Codex Agent)
 
-### For Claude Agent
-```typescript
-ClaudeResponse {
-  code: string;
-  // Additional claude-specific fields
-}
-```
+| Property | Type | Description |
+|----------|------|-------------|
+| `sandboxId` | `string` | Unique identifier for the sandbox environment |
+| `stdout` | `string` | Standard output from code execution |
+| `stderr` | `string` | Standard error from code execution |
+| `exitCode` | `number` | Exit code from code execution |
+
+### ClaudeResponse (for Claude Agent)
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `code` | `string` | Generated code response |
 
 ## Agent-Specific Behavior
 

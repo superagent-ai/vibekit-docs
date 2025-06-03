@@ -19,16 +19,18 @@ This method takes no parameters.
 
 ## Return Type
 
-Returns a `Promise<PullRequestResponse>` containing:
+| Type | Description |
+|------|-------------|
+| `Promise<PullRequestResponse>` | Promise that resolves to a pull request response object |
 
-```typescript
-interface PullRequestResponse {
-  html_url: string;      // The URL to view the pull request on GitHub
-  number: number;        // The pull request number
-  branchName: string;    // The name of the branch created for the PR
-  commitSha?: string;    // The SHA of the commit (optional)
-}
-```
+### PullRequestResponse Interface
+
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `html_url` | `string` | Yes | The URL to view the pull request on GitHub |
+| `number` | `number` | Yes | The pull request number |
+| `branchName` | `string` | Yes | The name of the branch created for the PR |
+| `commitSha` | `string` | No | The SHA of the commit |
 
 ## Requirements
 
