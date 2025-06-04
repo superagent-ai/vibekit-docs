@@ -3,7 +3,7 @@ title: "createPullRequest"
 description: "Create a pull request after generating code changes."
 ---
 
-## Method Signature
+## Method signature
 
 ```typescript
 async createPullRequest(): Promise<PullRequestResponse>
@@ -17,7 +17,7 @@ The `createPullRequest` method allows you to create a GitHub pull request after 
 
 This method takes no parameters.
 
-## Return Type
+## Return type
 
 | Type | Description |
 |------|-------------|
@@ -38,7 +38,7 @@ This method takes no parameters.
 - **Initialization**: The VibeKit instance must be properly initialized with Codex configuration
 - **Code Generation**: Code changes should be generated before creating a pull request
 
-## Error Handling
+## Error handling
 
 The method throws errors in the following scenarios:
 
@@ -56,7 +56,7 @@ throw new Error("CodexAgent not initialized")
 - **When**: The CodexAgent is not properly initialized
 - **Resolution**: Verify your VibeKit configuration includes valid Codex settings
 
-## Usage Examples
+## Usage examples
 
 ### Basic Usage
 

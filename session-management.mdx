@@ -1,0 +1,28 @@
+---
+title: 'Session Management'
+description: 'Learn how to manage sessions in VibeKit for multi-turn conversations'
+---
+
+## Sessions
+
+Sessions are a way to group together multiple requests to the agent. This is useful for multi-turn conversations and changes.
+
+**Configuration**
+```typescript
+const config: VibeConfig = {
+  ...
+  sessionId: "abdc***"
+};
+```
+
+**Set session id**
+
+```typescript
+const session = await vibeKit.setSession("abcd***")
+```
+
+**Get session id**
+
+```typescript
+const session = await vibeKit.getSession()
+```

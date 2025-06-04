@@ -4,7 +4,7 @@ description: 'Below is an example on how to get started with VibeKit'
 ---
 Follow these steps to install and run Vibekit:
 
-## Basic Setup
+## Basic setup
 
 **Step 1**: Install VibeKit Typescript SDK:
 
@@ -51,96 +51,21 @@ const vibeKit = new VibeKit(config);
 **Step 3**: Trigger the agent in code mode:
 
 ```typescript
-const result = await vibeKit.generateCode(
+const result = await vibeKit.generateCode({
   prompt: "Create a simple web app that displays a list of users",
-  "code",
-  [{role: "user", content: "Use Next.js and ShadCN"}],
-  {
+  mode: "code",
+  history: [{role: "user", content: "Use Next.js and ShadCN"}],
+  callbacks: {
     // Streaming callbacks
     onUpdate: (update) => {
       console.log(update);
     },
     onError: (error) => {
+      console.error("Error:", error);
+    },
   },
-)
+})
 
 console.log(result);
 
 ```
-
-## Ask mode
-
-VibeKit ships with a `ask` mode that allows you to ask questions to the agent without changing any files in the file system. This is useful for quick questions and answers.
-
-```typescript
-const result = await vibeKit.generateCode(
-  prompt: "Create a simple web app that displays a list of users",
-  "ask",
-  [],
-)
-```
-
-## Sessions
-
-Sessions are a way to group together multiple requests to the agent. This is useful for multi-turn conversations and changes.
-
-**Configuration**
-```typescript
-const config: VibeConfig = {
-  ...
-  sessionId: "abdc***"
-};
-```
-
-**Set session id**
-
-```typescript
-const session = await vibeKit.setSession("abcd***")
-```
-
-**Get session id**
-
-```typescript
-const session = await vibeKit.getSession()
-```
-
-## Pull requests
-
-VibeKit can create pull requests for you.
-
-```typescript
-const result  = await vibeKit.generateCode(
-  prompt: "Create a simple web app that displays a list of users",
-  "code",
-  [],
-)
-
-const pullRequest = await vibeKit.createPullRequest()
-```
-
-## Telemetry
-
-VibeKit implements an OpenTelemetry interface you can use for observability 
-
-```typescript
-const config: VibeConfig = {
-  ...,
-  telemetry: {
-    isEnabled: true,
-    endpoint: "https://test-otel-endpoint.com/v1/traces",
-    serviceName: "test-vibekit",
-    serviceVersion: "1.0.0",
-    headers: {
-      Authorization: "Bearer test-token",
-    },
-    timeout: 5000,
-    samplingRatio: 1.0,
-    resourceAttributes: {
-      environment: "test",
-    },
-  },
-};
-```
-
-
-

@@ -3,7 +3,7 @@ title: 'getSession'
 description: 'Retrieves the current session ID for the sandbox environment.'
 ---
 
-## Method Signature
+## Method signature
 
 ```typescript
 async getSession(): Promise<string | null>
@@ -13,7 +13,7 @@ async getSession(): Promise<string | null>
 
 This method takes no parameters.
 
-## Return Value
+## Return value
 
 | Type | Description |
 |------|-------------|
@@ -68,7 +68,7 @@ if (!sessionId) {
 localStorage.setItem('vibekit-session', sessionId);
 ```
 
-### Error Handling
+### Error handling
 
 ```typescript
 try {
@@ -83,7 +83,7 @@ try {
 }
 ```
 
-## Error Handling
+## Error handling
 
 The method throws errors in the following cases:
 
@@ -111,7 +111,7 @@ const config = {
 };
 ```
 
-## Use Cases
+## Use cases
 
 ### Session Persistence
 Store and retrieve session IDs to maintain continuity across application restarts:
@@ -146,7 +146,7 @@ async function getUserSession(userId: string) {
 }
 ```
 
-## Related Methods
+## Related methods
 
 - [`setSession`](./set-session) - Set a specific session ID for the sandbox
 - [`generateCode`](./generate-code) - Generate code (creates a session if none exists)

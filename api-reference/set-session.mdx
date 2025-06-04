@@ -3,7 +3,7 @@ title: 'setSession'
 description: 'Sets the session ID for the sandbox environment. This method allows you to restore or switch between existing sandbox sessions.'
 ---
 
-## Method Signature
+## Method signature
 
 ```typescript
 async setSession(sessionId: string): Promise<void>
@@ -15,7 +15,7 @@ async setSession(sessionId: string): Promise<void>
 |-----------|------|----------|-------------|
 | `sessionId` | `string` | Yes | The session ID to set for the sandbox environment. Must be a valid session identifier from a previously created session. |
 
-## Return Value
+## Return value
 
 | Type | Description |
 |------|-------------|
@@ -115,7 +115,7 @@ await switchToProject('projectA');
 await switchToProject('projectB');
 ```
 
-## Error Handling
+## Error handling
 
 The method throws errors in the following cases:
 
@@ -141,7 +141,7 @@ try {
 }
 ```
 
-## Configuration Requirements
+## Configuration requirements
 
 ```typescript
 // Correct configuration for session management
@@ -162,7 +162,7 @@ const config = {
 };
 ```
 
-## Use Cases
+## Use cases
 
 ### Session Persistence Across App Restarts
 
@@ -283,7 +283,7 @@ class ProjectManager {
 }
 ```
 
-## Related Methods
+## Related methods
 
 - [`getSession`](./get-session) - Retrieve the current session ID
 - [`generateCode`](./generate-code) - Generate code (creates a session if none exists)

@@ -3,15 +3,22 @@ title: 'generateCode'
 description: 'Generates code using the configured AI agent (Codex or Claude) with optional streaming callbacks and conversation history.'
 ---
 
-## Method Signature
+## Method signature
 
 ```typescript
-async generateCode(
-  prompt: string,
-  mode?: "ask" | "code",
-  history?: Conversation[],
-  callbacks?: VibeKitStreamCallbacks
-): Promise<AgentResponse>
+async generateCode({
+  prompt,
+  mode,
+  branch,
+  history,
+  callbacks,
+}: {
+  prompt: string;
+  mode: "ask" | "code";
+  branch?: string;
+  history?: Conversation[];
+  callbacks?: VibeKitStreamCallbacks;
+}): Promise<AgentResponse>
 ```
 
 ## Parameters
@@ -19,7 +26,8 @@ async generateCode(
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
 | `prompt` | `string` | Yes | - | The text prompt describing what code to generate or question to ask |
-| `mode` | `"ask" \| "code"` | No | Agent config mode | Interactive Q&A mode (`"ask"`) or code generation mode (`"code"`) |
+| `mode` | `"ask" \| "code"` | Yes | - | Interactive Q&A mode (`"ask"`) or code generation mode (`"code"`) |
+| `branch` | `string` | No | - | Branch identifier for version control or environment context |
 | `history` | `Conversation[]` | No | - | Previous conversation history to provide context for the generation |
 | `callbacks` | `VibeKitStreamCallbacks` | No | - | Streaming callbacks for real-time updates |
 
@@ -30,7 +38,7 @@ async generateCode(
 | `onUpdate` | `(message: string) => void` | No | Called with streaming updates |
 | `onError` | `(error: string) => void` | No | Called when errors occur |
 
-## Return Value
+## Return value
 
 | Type | Description |
 |------|-------------|
@@ -51,7 +59,7 @@ async generateCode(
 |----------|------|-------------|
 | `code` | `string` | Generated code response |
 
-## Agent-Specific Behavior
+## Agent-specific behavior
 
 ### Codex Agent
 - **Streaming Support:** Full streaming support with real-time updates
@@ -72,10 +80,10 @@ async generateCode(
 ```typescript
 const vibeKit = new VibeKit(config);
 
-const response = await vibeKit.generateCode(
-  "Create a React component for a todo list",
-  "code"
-);
+const response = await vibeKit.generateCode({
+  prompt: "Create a React component for a todo list",
+  mode: "code"
+});
 
 console.log(response);
 ```
@@ -83,11 +91,10 @@ console.log(response);
 ### With Streaming Callbacks
 
 ```typescript
-const response = await vibeKit.generateCode(
-  "Explain how React hooks work",
-  "ask",
-  undefined,
-  {
+const response = await vibeKit.generateCode({
+  prompt: "Explain how React hooks work",
+  mode: "ask",
+  callbacks: {
     onUpdate: (message) => {
       console.log("Update:", message);
     },
@@ -95,10 +102,10 @@ const response = await vibeKit.generateCode(
       console.error("Error:", error);
     }
   }
-);
+});
 ```
 
-### With Conversation History
+### With Conversation History and Branch
 
 ```typescript
 const history = [
@@ -112,14 +119,15 @@ const history = [
   }
 ];
 
-const response = await vibeKit.generateCode(
-  "Now show me a React component example",
-  "code",
+const response = await vibeKit.generateCode({
+  prompt: "Now show me a React component example",
+  mode: "code",
+  branch: "feature-react-components",
   history
-);
+});
 ```
 
-## Error Handling
+## Error handling
 
 The method throws errors in the following cases:
 
@@ -131,7 +139,10 @@ The method throws errors in the following cases:
 
 ```typescript
 try {
-  const response = await vibeKit.generateCode(prompt);
+  const response = await vibeKit.generateCode({
+    prompt,
+    mode: "code"
+  });
 } catch (error) {
   if (error.message.includes('not initialized')) {
     // Handle initialization error
@@ -152,7 +163,9 @@ When telemetry is enabled, the method automatically tracks:
 
 ## Notes
 
-- **Mode Fallback:** If no mode is specified, uses the default mode from agent configuration
+- **Required Mode:** The `mode` parameter is now required and must be specified
+- **Object Parameters:** All parameters are now passed as a destructured object for better API consistency
+- **Branch Support:** The optional `branch` parameter allows for version control or environment context
 - **Streaming Differences:** Codex provides real-time streaming, while Claude only provides start/end notifications
 - **Environment Support:** Daytona environment is not yet supported and will throw an error
 - **Conversation Context:** History is preserved across calls to maintain conversation context
