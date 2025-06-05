@@ -97,8 +97,8 @@
     }
   },
   "logo": {
-    "light": "/logo/vibekit.png",
-    "dark": "/logo/vibekit.png"
+    "light": "/logo/logo.png",
+    "dark": "/logo/logo.png"
   },
   "navbar": {
     "links": [
