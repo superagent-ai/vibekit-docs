@@ -21,9 +21,16 @@ const config: VibeKitConfig = {
     },
   },
   environment: {
+    // Option 1: E2B sandbox
     e2b: {
       apiKey: "e2b_****"
     }
+    // Option 2: Daytona sandbox
+    // daytona: {
+    //   apiKey: "daytona_****",
+    //   image: "codex-image",
+    //   serverUrl: "https://app.daytona.io/api"
+    // }
   },
   github: {
     token: "ghp_****",
@@ -110,8 +117,8 @@ environment: {
 environment: {
   daytona: {
     apiKey: "daytona_****",
-    image: "ubuntu:22.04", // optional
-    serverUrl: "https://your-daytona-server.com" // optional
+    image: "my-codex-image", // optional
+    serverUrl: "https://app.daytona.io/api" // optional
   }
 }
 ```
