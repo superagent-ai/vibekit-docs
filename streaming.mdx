@@ -1,0 +1,81 @@
+---
+title: Streaming
+description: "VibeKit supports streaming responses, allowing you to receive data from the API in real-time as it is generated."
+---
+
+VibeKit supports streaming responses, allowing you to receive data from the API in real-time as it is generated. This is particularly useful for applications that require immediate feedback or want to display results incrementally.
+
+## Overview
+
+Streaming enables your application to process and display data as soon as it is available, rather than waiting for the entire response. This can improve user experience and reduce perceived latency.
+
+## How to Use Streaming
+
+To enable streaming with the `generateCode` method, provide a `callbacks` object with `onUpdate` and/or `onError` functions. The API will then call these functions as data is generated.
+
+### Example Usage
+
+```typescript
+import { generateCode } from 'vibekit';
+
+const response = await generateCode({
+  prompt: "Create a React component for a todo list",
+  mode: "code",
+  callbacks: {
+    onUpdate: (message: string) => {
+      // Handle streaming updates
+      console.log('Streaming update:', message);
+      // Update your UI with the new content
+      updateUI(message);
+    },
+    onError: (error: string) => {
+      // Handle streaming errors
+      console.error('Streaming error:', error);
+    }
+  }
+});
+
+// The final response is still available
+console.log('Final response:', response);
+```
+
+### With Conversation History
+
+```typescript
+const response = await generateCode({
+  prompt: "Now add error handling to the component",
+  mode: "code",
+  history: previousConversation,
+  callbacks: {
+    onUpdate: (message: string) => {
+      // Display incremental updates to the user
+      appendToOutput(message);
+    }
+  }
+});
+```
+
+## When to Use Streaming
+
+- When you want to display results to users as soon as they are available
+- For long-running code generation tasks where incremental updates improve UX
+- For interactive coding sessions where immediate feedback is valuable
+- For chatbots or Q&A mode where responses can be shown progressively
+
+## Streaming Callbacks
+
+The `VibeKitStreamCallbacks` interface provides two optional callback functions:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `onUpdate` | `(message: string) => void` | Called with streaming content updates as they are generated |
+| `onError` | `(error: string) => void` | Called when errors occur during streaming |
+
+## Notes
+
+- Streaming is available for both "ask" and "code" modes
+- The final response is still returned as a Promise, even when using streaming callbacks
+- Streaming callbacks are optional - you can use the method without them for non-streaming behavior
+- Handle errors appropriately in your `onError` callback to provide good user experience
+
+For more details, refer to the [Generate Code API Reference](/api-reference/generate-code) or contact support. 
