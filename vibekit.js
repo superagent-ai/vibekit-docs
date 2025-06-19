@@ -6,7 +6,7 @@ class VibeKitModal {
     // Constants
     static DEFAULTS = {
         width: 900,
-        height: 600,
+        height: 620,
         minHeight: 200,
         maxHeightRatio: 0.95,
         maxWidthRatio: 0.95,
