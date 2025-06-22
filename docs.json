@@ -36,6 +36,7 @@
               "github-integration",
               "streaming",
               "session-management",
+              "secrets",
               "open-telemetry"
             ]
           },
@@ -67,6 +68,7 @@
               "api-reference/generate-code",
               "api-reference/create-pull-request",
               "api-reference/push-to-branch",
+              "api-reference/run-tests",
               "api-reference/kill-sandbox",
               "api-reference/pause-sandbox",
               "api-reference/resume-sandbox",
