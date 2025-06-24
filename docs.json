@@ -44,7 +44,8 @@
             "group": "Agents",
             "pages": [
               "agents/codex",
-              "agents/claude-code"
+              "agents/claude-code",
+              "agents/opencode"
             ]
           },
           {

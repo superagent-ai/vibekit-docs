@@ -49,12 +49,13 @@ const vibeKit = new VibeKit(config);
 The `agent` section defines which AI model and mode to use.
 
 #### `agent.type`
-- **Type**: `"codex" | "claude"`
+- **Type**: `"codex" | "claude" | "opencode"`
 - **Required**: Yes
 - **Description**: The type of AI agent to use
 - **Options**:
-  - `"codex"` - OpenAI Codex model
-  - `"claude"` - Anthropic Claude model
+  - `"codex"` - OpenAI Codex agent
+  - `"claude"` - Anthropic Claude agent
+  - `"opencode"` - Opencode agent
 
 #### `agent.model`
 - **Type**: `AgentModel`
