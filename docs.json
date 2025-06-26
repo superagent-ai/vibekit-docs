@@ -73,6 +73,7 @@
               "api-reference/push-to-branch",
               "api-reference/run-tests",
               "api-reference/kill-sandbox",
+              "api-reference/get-host",
               "api-reference/pause-sandbox",
               "api-reference/resume-sandbox",
               "api-reference/get-session",
