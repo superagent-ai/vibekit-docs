@@ -53,6 +53,7 @@
             "group": "Supported Sandboxes",
             "pages": [
               "supported-sandboxes/e2b",
+               "supported-sandboxes/northflank",
               "supported-sandboxes/daytona",
               "supported-sandboxes/flyio",
               "supported-sandboxes/modal"
