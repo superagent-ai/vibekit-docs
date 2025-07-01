@@ -113,6 +113,30 @@ environment: {
 | `apiKey` | `string` | Yes | Your E2B API key |
 | `templateId` | `string` | No | Custom template ID for the sandbox environment |
 
+#### Northflank Configuration
+
+```typescript
+environment: {
+  northflank: {
+    apiKey: "nf_****",
+    image: "your-custom-image", // optional
+    projectId: "your-project-id", // optional
+    billingPlan: "nf-compute-200", // optional
+    persistentVolume: "/var/app", // optional
+    persistentVolumeStorage: 10240 // optional
+  }
+}
+```
+
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `apiKey` | `string` | Yes | Your Northflank API key |
+| `image` | `string` | No | Custom image to override the inferred agent sandbox image |
+| `projectId` | `string` | No | The project ID corresponding to the project you created |
+| `billingPlan` | `string` | No | Billing plan determining CPU & RAM (default: nf-compute-200 - 2 vCPU & 4096GB RAM) |
+| `persistentVolume` | `string` | No | The persistent path of your sandbox (default: /var/app) |
+| `persistentVolumeStorage` | `number` | No | The persistent volume size in MB (default: 10240 - 10GiB) |
+
 #### Daytona Configuration
 
 ```typescript
