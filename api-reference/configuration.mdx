@@ -122,7 +122,6 @@ environment: {
     image: "your-custom-image", // optional
     projectId: "your-project-id", // optional
     billingPlan: "nf-compute-200", // optional
-    persistentVolume: "/var/app", // optional
     persistentVolumeStorage: 10240 // optional
   }
 }
@@ -134,7 +133,6 @@ environment: {
 | `image` | `string` | No | Custom image to override the inferred agent sandbox image |
 | `projectId` | `string` | No | The project ID corresponding to the project you created |
 | `billingPlan` | `string` | No | Billing plan determining CPU & RAM (default: nf-compute-200 - 2 vCPU & 4096GB RAM) |
-| `persistentVolume` | `string` | No | The persistent path of your sandbox (default: /var/app) |
 | `persistentVolumeStorage` | `number` | No | The persistent volume size in MB (default: 10240 - 10GiB) |
 
 #### Daytona Configuration
@@ -213,6 +211,18 @@ sessionId: "unique-session-identifier"
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
 | `sessionId` | `string` | No | Unique identifier for grouping related requests and maintaining conversation context |
+
+### Working directory
+
+The `workingDirectory` parameter specifies the directory where the agent should execute commands and work with files.
+
+```typescript
+workingDirectory: "/path/to/your/project"
+```
+
+| Property | Type | Required | Default | Description |
+|----------|------|----------|---------|-------------|
+| `workingDirectory` | `string` | No | `/var/vibe0` | The directory path where the agent will execute commands and access files |
 
 
 

@@ -7,7 +7,6 @@ description: "Create a pull request after generating code changes."
 
 ```typescript
 async createPullRequest(
-  projectPath?: string,
   labelOptions?: LabelOptions,
   branchPrefix?: string
 ): Promise<PullRequestResponse>
@@ -21,7 +20,6 @@ The `createPullRequest` method allows you to create a GitHub pull request after 
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `projectPath` | `string` | No | Optional path to the project directory. If provided, overrides the default repository directory |
 | `labelOptions` | `LabelOptions` | No | Optional label configuration for the pull request |
 | `branchPrefix` | `string` | No | Optional prefix for the branch name that will be created |
 
@@ -133,7 +131,6 @@ const labelOptions: LabelOptions = {
 
 try {
   const prResponse = await vibekit.createPullRequest(
-    "/path/to/custom/project",  // Custom project path
     labelOptions,               // Custom label options
     "feature"                   // Branch prefix (will create feature/xyz branch)
   );
@@ -204,6 +201,5 @@ await vibekitCodex.createPullRequest();
 - The method creates a new branch for the pull request automatically
 - Code changes must be generated before calling this method
 - When using `branchPrefix`, the final branch name will be in the format `{branchPrefix}/{generated-suffix}`
-- The `projectPath` parameter allows you to override the default repository directory for cases where you need to work with a different project structure
 - The `labelOptions` parameter creates a new label if it doesn't exist in the repository and applies it to the pull request
 - The response includes the complete GitHub API pull request data, allowing access to detailed information like user details, branch information, timestamps, and merge status

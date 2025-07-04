@@ -24,8 +24,6 @@ const config: VibeConfig = {
       projectId: "your-project-id",
       // Optional billing plan determining CPU & RAM (default: nf-compute-200 - 2 vCPU & 4096GB RAM)
       billingPlan: "nf-compute-200",
-      // Optional persistent path of your sandbox (default: /var/app)
-      persistentVolume: "/var/app",
       // Optional persistent volume size in MB (default: 10240 - 10GiB)
       persistentVolumeStorage: 10240
     },
@@ -39,7 +37,6 @@ const config: VibeConfig = {
 - **`image`** (optional): Override the inferred agent sandbox image with a custom image
 - **`projectId`** (optional): The project name you created in the Northflank dashboard
 - **`billingPlan`** (optional): Determines the CPU & RAM of the sandboxes (default: `nf-compute-200` which has 2 vCPU & 4096GB RAM)
-- **`persistentVolume`** (optional): The persistent path of your sandbox (default: `/var/app`)
 - **`persistentVolumeStorage`** (optional): The persistent volume size in MB (default: `10240` for 10GiB)
 
 ## ENV variables and secrets

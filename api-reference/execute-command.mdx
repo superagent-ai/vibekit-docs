@@ -10,7 +10,6 @@ public async executeCommand(
   command: string,
   options: {
     timeoutMs?: number;
-    useRepoContext?: boolean;
     background?: boolean;
     callbacks?: StreamCallbacks;
   } = {}
@@ -29,7 +28,6 @@ public async executeCommand(
 | Property | Type | Required | Default | Description |
 |----------|------|----------|---------|-------------|
 | `timeoutMs` | `number` | No | - | Maximum time in milliseconds to wait for command completion |
-| `useRepoContext` | `boolean` | No | `false` | Whether to execute the command within the repository context |
 | `background` | `boolean` | No | `false` | Whether to run the command in the background (non-blocking) |
 | `callbacks` | `StreamCallbacks` | No | - | Streaming callbacks for real-time command output |
 
@@ -97,16 +95,6 @@ const result = await vibekit.executeCommand('npm run dev', {
 console.log('Background process started with sandbox ID:', result.sandboxId);
 ```
 
-### Command with Repository Context
-
-```typescript
-// Execute command within the repository context
-const result = await vibekit.executeCommand('git status', {
-  useRepoContext: true
-});
-
-console.log('Git status:', result.stdout);
-```
 
 ### Streaming Command Output
 
@@ -132,7 +120,6 @@ console.log('Final test result:', result.exitCode === 0 ? 'PASSED' : 'FAILED');
 // Execute a complex command with multiple options
 const result = await vibekit.executeCommand('python -m pytest tests/', {
   timeoutMs: 60000,
-  useRepoContext: true,
   background: false,
   callbacks: {
     onUpdate: (output) => {
@@ -183,7 +170,7 @@ try {
 ## Notes
 
 - **Sandbox Environment:** Commands are executed within the active sandbox environment
-- **Working Directory:** Commands execute in the sandbox's default working directory unless `useRepoContext` is true
+- **Working Directory:** Commands execute in the sandbox's default working directory
 - **Environment Variables:** Sandbox environment variables are available to executed commands
 - **Resource Limits:** Commands are subject to sandbox CPU, memory, and time limitations
 - **Background Execution:** Background commands continue running after the method returns
